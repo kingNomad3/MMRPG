@@ -1,0 +1,41 @@
+
+
+Pour les inserts, 
+
+- 4 joueurs
+      * Avec nos noms
+      * Un des joueurs = main player donc ajouter * à la fin du nom
+      
+      - 5 avatars
+          * 1 par joueurs normaux
+          * 3 pour le main, 1 des avatars = main donc on ajoute * à la fin du nom
+       - Pour le joueur principal : 8 capsules d'activité dont 6 sont liées à l'avatar principal
+              * Les capsules doivent être liée à 4 activités différentes
+       - Pour les autres : 3 capsules liées à X activités.
+       
+       - 3 jeux en tout qui comprennent 3 habiletés et 5 items par niveau
+                    * donc 9 habiletés en tout
+                    * 15 items
+                    
+       
+       _ Pour toutes les autres tables : 
+              * Au moins 3 entrées par table (qui ne sont oas des tables de liaison)
+              * Table de liaison : 30 entrées par table de liaison.
+              
+              
+              
+       Division de tâches (résumé): 
+              - Par membre d'équipe:
+                      - Joueur Principal : 0 jeu
+                            - 8 Capsule, 4 activité
+                      - Autres :  1 jeu par personne
+                              - 3 habiletés
+                              - 5 items
+                              - 3 capsule, 1 activité
+                              
+                      - Par tables de liaison : 6 entrées
+                      
+                    
+              
+          
+          
