@@ -17,6 +17,7 @@
 	--jeu				  
 	INSERT INTO jeu(nom, sigle, description) VALUES ('Desert', 'D18945', 'Sun, sand , heat');
 	
+
 	
 	--habilete
 	-- Si coef est a default, retirer de la declaration: habilite(declaration) VALUES ..
