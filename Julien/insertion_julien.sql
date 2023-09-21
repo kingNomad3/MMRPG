@@ -21,28 +21,64 @@ INSERT INTO avatar(nom, joueur, date_creation, quantite_mox)
 							WHERE alias_joueur = 'julienpay2win'), 
 			 TO_DATE('2023-05-11', 'YYYY-MM-DD'), 100);
 			 
+-- CREATION PHRASES
+
+INSERT INTO phrase(avatar,phrase) 
+	 VALUES ((SELECT id
+			    FROM avatar
+			   WHERE nom = 'kingpayment'), 
+			 'I like to swipe.');
+			   
+INSERT INTO phrase(avatar,phrase) 
+     VALUES ((SELECT id
+			    FROM avatar
+			   WHERE nom = 'kingpayment'), 
+			 'We will rock you.');
+	 
+INSERT INTO phrase(avatar,phrase) 
+     VALUES ((SELECT id
+			    FROM avatar
+			   WHERE nom = 'kingpayment'), 
+			 'Time to die.');
+	 
+INSERT INTO phrase(avatar,phrase) 
+     VALUES ((SELECT id
+			    FROM avatar
+			   WHERE nom = 'bigandrich'), 
+			 'Live fast, die young.');
+	 
+INSERT INTO phrase(avatar,phrase) 
+     VALUES ((SELECT id
+			    FROM avatar
+			   WHERE nom = 'ezclapper'), 
+			 'Stairway to heaven is overrated.');
+			 
 -- CREATION ACTIVITE:
 
 INSERT INTO activite(joueur, date_debut, duree) 
      VALUES ((SELECT id 
 			    FROM joueur
 			   WHERE alias_joueur = 'julienpay2win'),
-			 TO_TIMESTAMP('2023-03-25 08:30:10', 'YYYY-MM-DD HH:MI:SS'), 10800);
+			 TO_TIMESTAMP('2023-03-25 08:30:10', 'YYYY-MM-DD HH:MI:SS'), 
+			 10800);
 INSERT INTO activite(joueur, date_debut, duree) 
      VALUES ((SELECT id 
 			     FROM joueur
 			    WHERE alias_joueur = 'julienpay2win'),
-			 TO_TIMESTAMP('2023-04-11 10:40:10', 'YYYY-MM-DD HH:MI:SS'), 5400);
+			 TO_TIMESTAMP('2023-04-11 10:40:10', 'YYYY-MM-DD HH:MI:SS'), 
+			 5400);
 INSERT INTO activite(joueur, date_debut,duree) 
      VALUES ((SELECT id 
 			     FROM joueur
 			    WHERE alias_joueur = 'julienpay2win'),
-			 TO_TIMESTAMP('2023-03-28 10:30:01', 'YYYY-MM-DD HH:MI:SS'), 1500);
+			 TO_TIMESTAMP('2023-03-28 10:30:01', 'YYYY-MM-DD HH:MI:SS'), 
+			 1500);
 INSERT INTO activite(joueur, date_debut, duree) 
      VALUES ((SELECT id 
 			     FROM joueur
 			    WHERE alias_joueur = 'julienpay2win'),
-			 TO_TIMESTAMP('2023-05-11 08:24:45', 'YYYY-MM-DD HH:MI:SS'), 7200);
+			 TO_TIMESTAMP('2023-05-11 08:24:45', 'YYYY-MM-DD HH:MI:SS'), 
+			 7200);
 
 -- CAPSULE D'ACTIVITÉ:
 -- kingpayment (avatar principal)
@@ -56,7 +92,10 @@ INSERT INTO capsule_activite(activite , avatar, jeu, duree)
 				      			     WHERE alias_joueur = 'julienpay2win')),(SELECT id
 																		       FROM avatar
 																		      WHERE nom = 'kingpayment'), 
-			 333, 6000);
+			 (SELECT id 
+			    FROM jeu
+			   WHERE nom = 'Green World'), 
+			 6000);
 
 INSERT INTO capsule_activite(activite , avatar, jeu, duree) 
      VALUES ((SELECT id 
@@ -67,7 +106,10 @@ INSERT INTO capsule_activite(activite , avatar, jeu, duree)
 				      			     WHERE alias_joueur = 'julienpay2win')),(SELECT id
 																		       FROM avatar
 																		      WHERE nom = 'kingpayment'), 
-			 333, 2400);
+			 (SELECT id 
+			    FROM jeu
+			   WHERE nom = 'Magnifique World'), 
+			 2400);
 
 INSERT INTO capsule_activite(activite , avatar, jeu, duree) 
      VALUES ((SELECT id 
@@ -78,7 +120,10 @@ INSERT INTO capsule_activite(activite , avatar, jeu, duree)
 				      			     WHERE alias_joueur = 'julienpay2win')),(SELECT id
 																		       FROM avatar
 																		      WHERE nom = 'kingpayment'), 
-			 333, 2400);
+			 (SELECT id 
+			    FROM jeu
+			   WHERE nom = 'Clavier World'), 
+			 2400);
 			 
 INSERT INTO capsule_activite(activite , avatar, jeu, duree) 
      VALUES ((SELECT id 
@@ -89,7 +134,10 @@ INSERT INTO capsule_activite(activite , avatar, jeu, duree)
 				      			     WHERE alias_joueur = 'julienpay2win')),(SELECT id
 																		       FROM avatar
 																		      WHERE nom = 'kingpayment'), 
-			 333, 3000);			 
+			 (SELECT id 
+			    FROM jeu
+			   WHERE nom = 'Magnifique World'), 
+			 3000);			 
 			 
 INSERT INTO capsule_activite(activite , avatar, jeu, duree) 
      VALUES ((SELECT id 
@@ -100,7 +148,10 @@ INSERT INTO capsule_activite(activite , avatar, jeu, duree)
 				      			     WHERE alias_joueur = 'julienpay2win')),(SELECT id
 																		       FROM avatar
 																		      WHERE nom = 'kingpayment'), 
-			 333, 1200);			 
+			 (SELECT id 
+			    FROM jeu
+			   WHERE nom = 'Green World'), 
+			 1200);			 
 			 
 INSERT INTO capsule_activite(activite , avatar, jeu, duree) 
      VALUES ((SELECT id 
@@ -111,7 +162,10 @@ INSERT INTO capsule_activite(activite , avatar, jeu, duree)
 				      			     WHERE alias_joueur = 'julienpay2win')),(SELECT id
 																		       FROM avatar
 																		      WHERE nom = 'kingpayment'), 
-			 333, 1200);
+			 (SELECT id 
+			    FROM jeu
+			   WHERE nom = 'Magnifique World'), 
+			 1200);
 
 -- bignrich
 			 
@@ -123,8 +177,11 @@ INSERT INTO capsule_activite(activite , avatar, jeu, duree)
 		      			  		      FROM joueur
 				      			     WHERE alias_joueur = 'julienpay2win')),(SELECT id
 																		       FROM avatar
-																		      WHERE nom = 'bignrich'), 
-			 333, 1500);	
+																		      WHERE nom = 'bigandrich'), 
+			 (SELECT id 
+			    FROM jeu
+			   WHERE nom = 'Green World'), 
+			 1500);	
 			 
 -- ezclapper
 
@@ -137,9 +194,12 @@ INSERT INTO capsule_activite(activite , avatar, jeu, duree)
 				      			     WHERE alias_joueur = 'julienpay2win')),(SELECT id
 																		       FROM avatar
 																		      WHERE nom = 'ezclapper'), 
-			 333, 7200);
+			 (SELECT id 
+			    FROM jeu
+			   WHERE nom = 'Green World'), 
+			 7200);
 
 
-
+SELECT * FROM phrase
 
 
