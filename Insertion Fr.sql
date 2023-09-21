@@ -34,7 +34,7 @@ INSERT INTO activite(joueur, date_debut, duree)
      VALUES ( (SELECT id 
 			     FROM joueur
 			    WHERE alias_joueur = 'UltimateVegetable'),
-	     TO_TIMESTAMP('2023-04-11 10:12:05', 'YYYY-MM-DD HH:MI:SS'),42);
+	     TO_TIMESTAMP('2023-04-11 10:12:05', 'YYYY-MM-DD HH:MI:SS'),12000);
 		 
 
 SELECT * FROM activite;
@@ -56,12 +56,35 @@ INSERT INTO capsule_activite(activite,avatar,jeu, duree)
 																 FROM avatar
 																WHERE nom = 'Martin Le bleu'), (SELECT id
 																							      FROM jeu
-																							     WHERE nom = 'Green World' ),
-			42);
+																							     WHERE nom = 'Green World' ), 6000);
 
 
-			 
-			 
+
+INSERT INTO capsule_activite(activite,avatar,jeu, duree) 
+     VALUES ((SELECT id
+			    FROM activite
+			   WHERE date_debut = TO_TIMESTAMP('2023-04-11 10:12:05', 'YYYY-MM-DD HH:MI:SS')
+			     AND  joueur = (SELECT id
+					              FROM joueur 
+							     WHERE alias_joueur = 'UltimateVegetable')),
+															  (SELECT id 
+																 FROM avatar
+																WHERE nom = 'Martin Le bleu'), (SELECT id
+																							      FROM jeu
+																							     WHERE nom = 'Green World' ),4000);
+																								 
+INSERT INTO capsule_activite(activite,avatar,jeu, duree) 
+     VALUES ((SELECT id
+			    FROM activite
+			   WHERE date_debut = TO_TIMESTAMP('2023-04-11 10:12:05', 'YYYY-MM-DD HH:MI:SS')
+			     AND  joueur = (SELECT id
+					              FROM joueur 
+							     WHERE alias_joueur = 'UltimateVegetable')),
+															  (SELECT id 
+																 FROM avatar
+																WHERE nom = 'Martin Le bleu'), (SELECT id
+																							      FROM jeu
+																							     WHERE nom = 'Green World' ),2000);		
 
 -- Insert JEU 								3 jeux
 			 
