@@ -56,7 +56,8 @@ INSERT INTO capsule_activite(activite,avatar,jeu, duree)
 																 FROM avatar
 																WHERE nom = 'Martin Le bleu'), (SELECT id
 																							      FROM jeu
-																							     WHERE nom = 'Green World' ),8);
+																							     WHERE nom = 'Green World' ),
+			42);
 
 
 			 
