@@ -1,3 +1,16 @@
+ALTER TABLE IF EXISTS avatar_habilete DROP CONSTRAINT IF EXISTS fk_ah_habilete;
+ALTER TABLE IF EXISTS avatar_habilete DROP CONSTRAINT IF EXISTS fk_ah_avatar;
+ALTER TABLE IF EXISTS avatar_item DROP CONSTRAINT IF EXISTS fk_ai_item;
+ALTER TABLE IF EXISTS avatar_item DROP CONSTRAINT IF EXISTS fk_ai_avatar;
+ALTER TABLE IF EXISTS phrase DROP CONSTRAINT IF EXISTS fk_phrase_avatar;
+ALTER TABLE IF EXISTS item DROP CONSTRAINT IF EXISTS fk_item_jeu;
+ALTER TABLE IF EXISTS habilete DROP CONSTRAINT IF EXISTS fk_habilete_jeu;
+ALTER TABLE IF EXISTS capsule_activite DROP CONSTRAINT IF EXISTS fk_ca_avatar;
+ALTER TABLE IF EXISTS capsule_activite DROP CONSTRAINT IF EXISTS fk_ca_jeu;
+ALTER TABLE IF EXISTS capsule_activite DROP CONSTRAINT IF EXISTS fk_ca_activite;
+ALTER TABLE IF EXISTS activite DROP CONSTRAINT IF EXISTS fk_activite_joueur;
+ALTER TABLE IF EXISTS historique_abonnement DROP CONSTRAINT IF EXISTS fk_ha_joueur;
+ALTER TABLE IF EXISTS avatar DROP CONSTRAINT IF EXISTS fk_avatar_joueur;
 DROP TABLE IF EXISTS historique_abonnement;
 DROP TABLE IF EXISTS avatar_item;
 DROP TABLE IF EXISTS avatar_habilete;
@@ -87,7 +100,7 @@ CREATE TABLE habilete (
 
 CREATE TABLE item (
 	id				SERIAL,
-	joueur 			INTEGER					NOT NULL,
+	jeu 			INTEGER					NOT NULL,
 	nom 			VARCHAR(32)				NOT NULL,
 	sigle			VARCHAR(4)				NOT NULL,
 	description		VARCHAR(1024)			NOT NULL,
@@ -111,9 +124,9 @@ CREATE TABLE avatar (
 	joueur			INTEGER				NOT NULL,
 	date_creation	DATE				NOT NULL DEFAULT CURRENT_DATE,
 	quantite_mox	NUMERIC(9,2)		NOT NULL,
-	couleur_1		INTEGER				NOT NULL DEFAULT 4294967295, 
-	couleur_2		INTEGER,
-	couleur_3		INTEGER,
+	couleur_1		BIGINT				NOT NULL DEFAULT 4294967295, 
+	couleur_2		BIGINT,
+	couleur_3		BIGINT,
 	
 	CONSTRAINT pk_avatar PRIMARY KEY (id),
 	CONSTRAINT uc_avatar_mox CHECK (quantite_mox >= 1 AND quantite_mox <= 1000000),
@@ -201,14 +214,51 @@ CREATE TABLE historique_abonnement(
 
 -- INSERT INTO historique_abonnement(joueur) VALUES (2);
 
-ALTER TABLE nom de la table
-	ADD CONSTRAINT fk_blabla
-		FOREIGN KEY (champ) REFERENCES (asdasdasd(sdsd))
+ALTER TABLE avatar
+	ADD CONSTRAINT fk_avatar_joueur
+		FOREIGN KEY (joueur) REFERENCES joueur(id);
+		
+ALTER TABLE historique_abonnement
+	ADD CONSTRAINT fk_ha_joueur
+		FOREIGN KEY (joueur) REFERENCES joueur(id);
+		
+ALTER TABLE activite
+	ADD CONSTRAINT fk_activite_joueur
+		FOREIGN KEY (joueur) REFERENCES joueur(id);
+		
+ALTER TABLE capsule_activite
+	ADD CONSTRAINT fk_ca_activite
+		FOREIGN KEY (activite) REFERENCES activite(id),
+	ADD CONSTRAINT fk_ca_jeu
+		FOREIGN KEY (jeu) REFERENCES jeu(id),
+	ADD CONSTRAINT fk_ca_avatar
+		FOREIGN KEY (avatar) REFERENCES avatar(id);
+		
+ALTER TABLE habilete
+	ADD CONSTRAINT fk_habilete_jeu
+		FOREIGN KEY (jeu) REFERENCES jeu(id);
 
+ALTER TABLE item
+	ADD CONSTRAINT fk_item_jeu
+		FOREIGN KEY (jeu) REFERENCES jeu(id);
 
+ALTER TABLE phrase
+	ADD CONSTRAINT fk_phrase_avatar
+		FOREIGN KEY (avatar) REFERENCES avatar(id);
 
-
-
+ALTER TABLE avatar_item
+	ADD CONSTRAINT fk_ai_avatar
+		FOREIGN KEY (avatar) REFERENCES avatar(id),
+	ADD CONSTRAINT fk_ai_item
+		FOREIGN KEY (item) REFERENCES item(id);
+		
+ALTER TABLE avatar_habilete
+	ADD CONSTRAINT fk_ah_avatar
+		FOREIGN KEY (avatar) REFERENCES avatar(id),
+	ADD CONSTRAINT fk_ah_habilete
+		FOREIGN KEY (habilete) REFERENCES habilete(id);
+		
+		
 
 
 
