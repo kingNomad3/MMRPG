@@ -42,38 +42,15 @@ SELECT * FROM activite
 
 /*5. Pour le joueur principal, donnez le nombre total d’heures passées dans chaque jeu joué.*/
 
-SELECT id
-  FROM avatar
- WHERE joueur = (SELECT id
-				   FROM joueur
-				  WHERE alias_joueur = 'julienpay2win*')
-
-SELECT jeu, duree 
-  FROM capsule_activite
- WHERE avatar = (SELECT id 
-				   FROM avatar
-				  WHERE nom = 'Martin Le bleu' OR nom = 'soumoune')
-	
- 
-SELECT * FROM capsule_activite WHERE avatar EXISTS ( SELECT id
-  FROM avatar
- WHERE joueur = (SELECT id
-				   FROM joueur
-				  WHERE alias_joueur = 'julienpay2win*'))
+    SELECT (SELECT nom 
+			  FROM jeu 
+			 WHERE id = ca.jeu) AS "Jeu:", 
+		    (CAST(SUM(DISTINCT duree) AS DOUBLE PRECISION)/60/60) AS "Durée passée (heure):"
+      FROM capsule_activite AS ca
+INNER JOIN avatar AS av
+		ON ca.avatar IN (SELECT id FROM avatar WHERE joueur = (SELECT id FROM joueur WHERE alias_joueur = 'julienpay2win*'))
+  GROUP BY ca.jeu
 				  
- -- (SELECT id FROM activite WHERE joueur = 1)
- 
- 
- SELECT jeu, duree
-   FROM capsule_activite
-  WHERE avatar = (SELECT id FROM a WHERE joueur = (SELECT id FROM joueur WHERE alias_joueur = 'julienpay2win')) AND )
-  
-  SELECT SUM(duree)
-  	FROM capsule_activite AS ca
-	INNER JOIN avatar AS av
-	ON ca.avatar IN (SELECT id FROM avatar WHERE joueur)
-
-
 
 /*6. Donnez la liste de tous les avatars qui possèdent plus de 1 item : nom du joueur, nom de l’avatar
 et nombre d’items*/
