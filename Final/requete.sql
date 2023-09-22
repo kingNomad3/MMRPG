@@ -45,11 +45,15 @@ SELECT * FROM activite
     SELECT (SELECT nom 
 			  FROM jeu 
 			 WHERE id = ca.jeu) AS "Jeu:", 
-		    (CAST(SUM(DISTINCT duree) AS DOUBLE PRECISION)/60/60) AS "Durée passée (heure):"
+		   (CAST(SUM(DISTINCT duree) AS DOUBLE PRECISION)/60/60) AS "Durée passée (heure):"
       FROM capsule_activite AS ca
 INNER JOIN avatar AS av
-		ON ca.avatar IN (SELECT id FROM avatar WHERE joueur = (SELECT id FROM joueur WHERE alias_joueur = 'julienpay2win*'))
-  GROUP BY ca.jeu
+		ON ca.avatar IN (SELECT id 
+						   FROM avatar 
+						  WHERE joueur = (SELECT id 
+										    FROM joueur 
+										   WHERE alias_joueur = 'julienpay2win*'))
+  GROUP BY ca.jeu;
 				  
 
 /*6. Donnez la liste de tous les avatars qui possèdent plus de 1 item : nom du joueur, nom de l’avatar
