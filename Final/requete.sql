@@ -1,7 +1,7 @@
 --1. Donnez la liste de tous les joueurs, on désire : alias, courriel, date d’inscription. Le tout trié par
 --date d’inscription (croissant)
 
-SELECT alias_joueur AS "Alias", courriel AS "Courriel", date_inscription AS "Date d"
+SELECT alias_joueur AS "Alias", courriel AS "Courriel", date_inscription AS "Date d''inscription"
 FROM joueur
 ORDER BY date_inscription ASC;
 
@@ -12,8 +12,9 @@ une seule colonne selon ce format : « (127, 0, 255) »), date de création suiv
 2000 | 12 | 25, le nombre de moX.*/
 
 SELECT nom, 
-	   date_creation,
-	   '(' || (couleur_1 & x'FF000000'::int >> 24) || ', ' ||  (couleur_1 & x'00FF0000'::int >> 16) || ', ' || (couleur_1 & x'0000FF00'::int >> 8) || ')'
+	   '(' || (couleur_1 & x'FF000000'::int >> 24) || ', ' ||  (couleur_1 & x'00FF0000'::int >> 16) || ', ' || (couleur_1 & x'0000FF00'::int >> 8) || ')' AS "Couleur préférée:",
+	   (EXTRACT(YEAR FROM date_creation)) || ' | ' || (EXTRACT(MONTH FROM date_creation)) || ' | ' || (EXTRACT(DAY FROM date_creation)) AS "Date d''inscription",
+	   quantite_mox AS "Quantité de moX"
   FROM avatar
  WHERE id = (SELECT id
 			   FROM joueur
