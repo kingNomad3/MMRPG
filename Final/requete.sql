@@ -46,7 +46,7 @@ SELECT * FROM activite
     SELECT (SELECT nom 
 			  FROM jeu 
 			 WHERE id = capsule_activite.jeu) AS "Jeu:", 
-		   (CAST(SUM(DISTINCT duree) AS DOUBLE PRECISION)/60/60) AS "Durée passée (heure):"
+		   CAST((CAST(SUM(DISTINCT duree) AS DOUBLE PRECISION)/60/60) AS NUMERIC(3,2)) AS "Durée passée (heure):"
       FROM capsule_activite
 INNER JOIN avatar
 		ON capsule_activite.avatar IN (SELECT id 
