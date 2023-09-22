@@ -629,5 +629,16 @@ INSERT INTO avatar_item (avatar, item, date_obtention, quantite)
 			   WHERE nom = 'soumoune'), (SELECT id 
 											   FROM item
 											  WHERE sigle = 'L091'), TO_TIMESTAMP('2023-05-09 10:27:10', 'YYYY-MM-DD HH:MI:SS'), 2 );
-			SELECT * FROM avatar_item								  
+
+
+
+
+
+    SELECT ca.jeu AS "Jeu:", 
+		   SUM(duree) AS "Durée passée:"
+      FROM capsule_activite AS ca
+INNER JOIN avatar AS av
+		ON ca.avatar IN (SELECT id FROM avatar WHERE joueur = (SELECT id FROM joueur WHERE alias_joueur = 'julienpay2win*'))
+  GROUP BY ca.jeu
+
 										  
