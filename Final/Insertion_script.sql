@@ -348,7 +348,7 @@ INSERT INTO capsule_activite(activite , avatar, jeu, duree)
 																											 FROM jeu
 																										    WHERE nom = 'PUMPUM'), 1200);
 
--- bignrich
+-- bigandrich
 			 
 INSERT INTO capsule_activite(activite , avatar, jeu, duree) 
      VALUES ((SELECT id 
@@ -451,7 +451,7 @@ INSERT INTO capsule_activite(activite,avatar,jeu,duree)
 																							    FROM jeu
 																							   WHERE nom = 'PUMPUM'), 5000);
 																																
--- francois:
+-- Martin Le bleu:
 
 INSERT INTO capsule_activite(activite,avatar,jeu, duree) 
      VALUES ((SELECT id
