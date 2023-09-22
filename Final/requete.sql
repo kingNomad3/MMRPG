@@ -23,17 +23,20 @@ SELECT nom,
 
 /* 3. Pour l’avatar principal, donnez toutes les habiletés qu’il possède en présentant : le sigle et le nom
 entre crochets dans la même colonne, la date d’obtention, le niveau courant, la valeur en moX
-du niveau courant et le coût en moX pour acheter le prochain niveau.*/ 
+du niveau courant et le coût en moX pour acheter le prochain niveau.*/
 
-SELECT  h.('[' || sigle || ', ' || nom || ']') AS Avatar FROM habilete AS h
+SELECT ('[' || (SELECT sigle
+			      FROM habilete
+			     WHERE id = avatar_habilete.habilete) || ', ' || (SELECT nom 
+		 														    FROM habilete 
+		 														   WHERE id = avatar_habilete.habilete) || ']') AS "Habileté:",
+		 date_obtention, 
+		 niveau 
+  FROM avatar_habilete 
+ WHERE avatar = (SELECT id 
+				   FROM avatar 
+				  WHERE nom = 'kingpayment*');
 
-
-
-
-SELECT date_obtention, niveau FROM avatar_habilete WHERE avatar = (SELECT id FROM avatar WHERE nom = 'kingpayment*') -- les habs de kingpayment
-
-
---(SELECT date_obtention FROM avatar_habilete WHERE id = ( SELECT id FROM avatar WHERE nom = 'kingpayment*' )) AS  FROM habilete
 
 
 /*4. Pour l’avatar principal, donnez sa valeur totale : pour les habilités on considère le niveau et pour
