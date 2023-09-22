@@ -633,12 +633,4 @@ INSERT INTO avatar_item (avatar, item, date_obtention, quantite)
 
 
 
-
-    SELECT ca.jeu AS "Jeu:", 
-		   SUM(duree) AS "Durée passée:"
-      FROM capsule_activite AS ca
-INNER JOIN avatar AS av
-		ON ca.avatar IN (SELECT id FROM avatar WHERE joueur = (SELECT id FROM joueur WHERE alias_joueur = 'julienpay2win*'))
-  GROUP BY ca.jeu
-
 										  
