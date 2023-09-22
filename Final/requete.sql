@@ -25,13 +25,13 @@ SELECT nom,
 entre crochets dans la même colonne, la date d’obtention, le niveau courant, la valeur en moX
 du niveau courant et le coût en moX pour acheter le prochain niveau.*/
 
-SELECT ('[' || (SELECT sigle
+SELECT ('[ ' || (SELECT sigle
 			      FROM habilete
 			     WHERE id = avatar_habilete.habilete) || ', ' || (SELECT nom 
 		 														    FROM habilete 
-		 														   WHERE id = avatar_habilete.habilete) || ']') AS "Habileté:",
-		 date_obtention, 
-		 niveau 
+		 														   WHERE id = avatar_habilete.habilete) || ' ]') AS "Habileté:",
+		 date_obtention AS "Date d''obtention:", 
+		 niveau AS "Niveau:"
   FROM avatar_habilete 
  WHERE avatar = (SELECT id 
 				   FROM avatar 
@@ -40,9 +40,27 @@ SELECT ('[' || (SELECT sigle
 
 
 /*4. Pour l’avatar principal, donnez sa valeur totale : pour les habilités on considère le niveau et pour
-les items on considère la quantité.*/ 
+les items on considère la quantité.
+*/ 
 
-SELECT * FROM activite
+SELECT (SELECT SUM((((SELECT coef_1 
+					    FROM habilete 
+					   WHERE id = avatar_habilete.habilete) * niveau) + ((SELECT coef_2 
+																		    FROM habilete 
+																		   WHERE id = avatar_habilete.habilete) * niveau) + (SELECT coef_3 
+																															   FROM habilete 
+																															  WHERE id = avatar_habilete.habilete) )) 
+  		  FROM avatar_habilete 
+ 		 WHERE avatar = (SELECT id 
+				           FROM avatar 
+				          WHERE nom = 'kingpayment*')) + (SELECT SUM((quantite  * (SELECT valeur_mox 
+																			         FROM item 
+																			        WHERE id = avatar_item.item))) AS Valeur 
+														    FROM avatar_item 
+														   WHERE avatar = (SELECT id 
+																		     FROM avatar 
+																		    WHERE nom = 'kingpayment*')) AS "Valeur totale (en moX):";
+
 
 /*5. Pour le joueur principal, donnez le nombre total d’heures passées dans chaque jeu joué.*/
 
@@ -63,13 +81,15 @@ INNER JOIN avatar
 /*6. Donnez la liste de tous les avatars qui possèdent plus de 1 item : nom du joueur, nom de l’avatar
 et nombre d’items*/
 
-SELECT nom 
-  FROM avatar
- WHERE 
- 
- SELECT COUNT(item)) FROM item WHERE   
- 
-SELECT * FROM avatar
+    SELECT (SELECT alias_joueur FROM joueur WHERE id = avatar.joueur) AS "Nom du joueur:", 
+		   avatar.nom AS "Nom de l''avatar",
+		   SUM(avatar_item.quantite)
+  	  FROM avatar
+INNER JOIN avatar_item
+	    ON avatar_item.quantite > 1 AND avatar_item.avatar = avatar.id
+  GROUP BY avatar.joueur, avatar.nom
+
+
 
 
 
