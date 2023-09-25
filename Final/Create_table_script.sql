@@ -79,8 +79,8 @@ CREATE TABLE jeu (
 	CONSTRAINT 	pk_jeu	PRIMARY KEY (id),
 	CONSTRAINT 	uc_jeu_nom	 UNIQUE (nom),
 	CONSTRAINT 	uc_jeu_sigle 	UNIQUE (sigle),
-	CONSTRAINT 	cc_jeu_nom	CHECK (LENGTH(nom) >= 3 AND nom ~ '^[a-zA-Z]'),
-	CONSTRAINT 	cc_jeu_sigle	CHECK (sigle ~ '^[a-zA-Z]')
+	CONSTRAINT 	cc_jeu_nom	CHECK (LENGTH(nom) >= 3 AND nom ~ '^[a-zA-Z]'),		-- regex s'assure que le nom commence par une lettre
+	CONSTRAINT 	cc_jeu_sigle	CHECK (sigle ~ '^[a-zA-Z]') 					-- regex s'assure que le sigle commence par une lettre
 );
 
 
@@ -115,7 +115,7 @@ CREATE TABLE item (
 	CONSTRAINT pk_item PRIMARY KEY (id),
 	CONSTRAINT uc_item_nom UNIQUE (nom),
 	CONSTRAINT uc_item_sigle UNIQUE (sigle),
-	CONSTRAINT cc_item_sigle CHECK (sigle ~ '^[L]'),
+	CONSTRAINT cc_item_sigle CHECK (sigle ~ '^[L]'), 	-- regex s'assure que le nom commence par un "L"
 	CONSTRAINT cc_item_probabilite CHECK (probabilite >= 0 AND probabilite <= 1),
 	CONSTRAINT cc_item_valeur CHECK (valeur_mox >= 1 AND valeur_mox <= 1000000)
 	
