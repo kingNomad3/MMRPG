@@ -1,6 +1,6 @@
 /*
 
-Requete_script.sql
+requete.pgsql
 420-C42-IN Langages d'exploitation des bases de données
 Auteurs : Julien Coulombe-Morency, Benjamin Joinvil, Aissa Bouaraguia, François Maltais
 Date de création : 2023-09-21
