@@ -153,7 +153,7 @@ INSERT INTO joueur(alias_joueur, courriel, mot_de_passe, genre, date_inscription
 -- Joueur secondaire:
 
 INSERT INTO joueur(alias_joueur, courriel, mot_de_passe, genre, date_inscription, date_naissance, statut) 
-	 VALUES ('Benjamin', 'nomad@gmail.com', '123', 'homme cisgenre', TO_DATE('2024-05-04','YYYY-MM-DD'), TO_DATE('2000-04-05','YYYY-MM-DD'), 'invite');
+	 VALUES ('Benjamin', 'nomad@gmail.com', '123', 'homme cisgenre', TO_DATE('2023-05-04','YYYY-MM-DD'), TO_DATE('2000-04-05','YYYY-MM-DD'), 'invite');
 
 INSERT INTO joueur(alias_joueur, courriel, mot_de_passe, genre, date_inscription, date_naissance, statut)
      VALUES ('UltimateVegetable', 'ultimate@gmail.com', 'tototo', 'homme cisgenre', TO_DATE('2023-04-05', 'YYYY-MM-DD'), TO_DATE('2000-09-12', 'YYYY-MM-DD'), 'invite');
@@ -286,7 +286,7 @@ INSERT INTO activite(joueur,date_debut, duree)
 INSERT INTO activite(joueur, date_debut, duree) 
 	 VALUES ((SELECT id
 				FROM joueur
-			   WHERE alias_joueur = 'Benjamin'), TO_TIMESTAMP('2024-05-05 10:30:44', 'YYYY-MM-DD HH:MI:SS'),10800 );
+			   WHERE alias_joueur = 'Benjamin'), TO_TIMESTAMP('2023-05-05 10:30:44', 'YYYY-MM-DD HH:MI:SS'),10800 );
 					
 INSERT INTO activite(joueur, date_debut, duree) 
      VALUES ( (SELECT id 
@@ -441,7 +441,7 @@ INSERT INTO capsule_activite(activite,avatar,jeu, duree)
 INSERT INTO capsule_activite(activite,avatar,jeu,duree)
 	 VALUES ((SELECT id
 		   		FROM activite
-		   	   WHERE date_debut= TO_TIMESTAMP('2024-05-05 10:30:44', 'YYYY-MM-DD HH:MI:SS')
+		   	   WHERE date_debut= TO_TIMESTAMP('2023-05-05 10:30:44', 'YYYY-MM-DD HH:MI:SS')
 		   		 AND joueur = (SELECT id
 		   						 FROM joueur
 		   						WHERE alias_joueur = 'Benjamin')),(SELECT id
@@ -452,7 +452,7 @@ INSERT INTO capsule_activite(activite,avatar,jeu,duree)
 INSERT INTO capsule_activite(activite,avatar,jeu,duree)
 	 VALUES ((SELECT id
 		   		FROM activite
-		   	   WHERE date_debut= TO_TIMESTAMP('2024-05-05 10:30:44', 'YYYY-MM-DD HH:MI:SS')
+		   	   WHERE date_debut= TO_TIMESTAMP('2023-05-05 10:30:44', 'YYYY-MM-DD HH:MI:SS')
 		   		 AND joueur = (SELECT id
 		   						 FROM joueur
 		   						WHERE alias_joueur = 'Benjamin')),(SELECT id
@@ -463,7 +463,7 @@ INSERT INTO capsule_activite(activite,avatar,jeu,duree)
 INSERT INTO capsule_activite(activite,avatar,jeu,duree)
 	 VALUES ((SELECT id
 		   		FROM activite
-		   	   WHERE date_debut= TO_TIMESTAMP('2024-05-05 10:30:44', 'YYYY-MM-DD HH:MI:SS')
+		   	   WHERE date_debut= TO_TIMESTAMP('2023-05-05 10:30:44', 'YYYY-MM-DD HH:MI:SS')
 		   		 AND joueur = (SELECT id
 								 FROM joueur
 								WHERE alias_joueur = 'Benjamin')),(SELECT id
@@ -554,7 +554,7 @@ INSERT INTO avatar_habilete (avatar, habilete, date_obtention, niveau)
 			    FROM avatar
 			   WHERE nom = 'kingNomad'), (SELECT id 
 											FROM habilete
-										   WHERE sigle = 'P02'), TO_TIMESTAMP('2024-05-05 10:32:10', 'YYYY-MM-DD HH:MI:SS'), 1 );
+										   WHERE sigle = 'P02'), TO_TIMESTAMP('2023-05-05 10:32:10', 'YYYY-MM-DD HH:MI:SS'), 1 );
 											  
 -- Martin Le bleu:
 											  
@@ -611,7 +611,7 @@ INSERT INTO avatar_item (avatar, item, date_obtention, quantite)
 			    FROM avatar
 			   WHERE nom = 'kingNomad'), (SELECT id 
 											   FROM item
-											  WHERE sigle = 'L401'), TO_TIMESTAMP('2024-05-05 10:33:10', 'YYYY-MM-DD HH:MI:SS'), 1 );
+											  WHERE sigle = 'L401'), TO_TIMESTAMP('2023-05-05 10:33:10', 'YYYY-MM-DD HH:MI:SS'), 1 );
 											  
 -- Martin Le bleu:
 											  
@@ -630,7 +630,18 @@ INSERT INTO avatar_item (avatar, item, date_obtention, quantite)
 										   FROM item
 										  WHERE sigle = 'L091'), TO_TIMESTAMP('2023-05-09 10:27:10', 'YYYY-MM-DD HH:MI:SS'), 2 );
 
+-- HISTORIQUE DES ABONNEMENTS:
 
+INSERT INTO historique_abonnement (joueur, date_debut, date_fin)
+     VALUES ((SELECT id
+			    FROM joueur
+			   WHERE alias_joueur = 'julienpay2win*'), TO_DATE('2023-03-24', 'YYYY-MM-DD'), TO_DATE('2023-06-12', 'YYYY-MM-DD'));
+
+INSERT INTO historique_abonnement (joueur, date_debut)
+     VALUES ((SELECT id
+			    FROM joueur
+			   WHERE alias_joueur = 'julienpay2win*'), TO_DATE('2023-06-21', 'YYYY-MM-DD'));
+			   
 
 
 										  
